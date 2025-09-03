@@ -17,11 +17,19 @@ public class RomanToInteger {
                 'M', 1000
         );
 
-        //Creamos un arreglo para tener los caracteres
         char[] arreglo = s.toCharArray();
         int total = 0;
-        for(char caracter: arreglo) {
-            total += map.get(caracter);
+
+        for (int i = 0; i < arreglo.length; i++) {
+
+            if (i + 1 < arreglo.length && map.get(arreglo[i]) < map.get(arreglo[i + 1])) {
+                total += map.get(arreglo[i + 1]) - map.get(arreglo[i]);
+                i++;
+
+            } else {
+                total += map.get(arreglo[i]);
+
+            }
         }
 
         return total;
@@ -30,6 +38,6 @@ public class RomanToInteger {
 
     public static void main (String []args) {
 
-        System.out.println("Total: " + romanToInt("IV"));
+        System.out.println("Total: " + romanToInt("XLIV"));
     }
 }
